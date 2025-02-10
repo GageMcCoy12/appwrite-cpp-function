@@ -3,7 +3,7 @@ name: Build & Push Docker Image to GHCR
 on:
   push:
     branches:
-      - main
+      - main  # Runs when you push to the main branch
 
 jobs:
   build-and-push:
@@ -16,7 +16,7 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Build the Docker image
-        run: docker build -t ghcr.io/${{ github.actor }}/appwrite-cpp-function:latest .
+        run: docker build -t ghcr.io/${{ github.actor,, }}/appwrite-cpp-function:latest .
 
       - name: Push the Docker image to GHCR
-        run: docker push ghcr.io/${{ github.actor }}/appwrite-cpp-function:latest
+        run: docker push ghcr.io/${{ github.actor,, }}/appwrite-cpp-function:latest
