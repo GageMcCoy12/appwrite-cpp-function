@@ -16,7 +16,7 @@ jobs:
         run: echo "USERNAME=$(echo $GITHUB_ACTOR | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Login to GitHub Container Registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ env.USERNAME }}" --password-stdin
+        run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u "${{ env.USERNAME }}" --password-stdin
 
       - name: Build the Docker image
         run: docker build -t ghcr.io/${{ env.USERNAME }}/appwrite-cpp-function:latest .
